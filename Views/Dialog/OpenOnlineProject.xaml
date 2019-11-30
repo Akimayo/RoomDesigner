@@ -1,0 +1,26 @@
+﻿<ContentDialog
+    x:Class="RoomDesigner.Views.Dialog.OpenOnlineProject"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RoomDesigner.Views.Dialog"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="Open online project"
+    PrimaryButtonText="Open"
+    SecondaryButtonText="Cancel"
+    PrimaryButtonClick="OpenProject"
+    IsPrimaryButtonEnabled="{x:Bind AllowConfirm, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+    DefaultButton="Primary">
+
+    <Grid Height="32">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <TextBox PlaceholderText="Project URL" Text="{x:Bind Url, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Grid.Column="0" />
+        <Button Tapped="Paste" VerticalAlignment="Center" Grid.Column="1">
+            <SymbolIcon Symbol="Paste" />
+        </Button>
+    </Grid>
+</ContentDialog>

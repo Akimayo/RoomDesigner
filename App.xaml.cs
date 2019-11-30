@@ -7,6 +7,7 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -66,7 +67,9 @@ namespace RoomDesigner
                     // Pokud není navigační zásobník obnovený, přejít na první stránku
                     // a nakonfigurovat novou stránku předáním požadovaných informací ve formě
                     // parametru navigace
-                    rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                    if (!ApplicationData.Current.RoamingSettings.Containers.ContainsKey("projects")) ApplicationData.Current.RoamingSettings.CreateContainer("projects", ApplicationDataCreateDisposition.Always);
+                    ApplicationDataContainer last = ApplicationData.Current.RoamingSettings.Containers["projects"];
+                    rootFrame.Navigate(typeof(Views.Menu), last);
                 }
                 // Zkontrolovat, jestli je aktuální okno aktivní
                 Window.Current.Activate();
